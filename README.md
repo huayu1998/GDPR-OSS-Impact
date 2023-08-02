@@ -4,7 +4,7 @@ Scripts to collect the GDPR data on Github &amp; Data files and data analysis to
 Description of the folder contents with paper sections:
 
 data_collection_scripts (Section ?)
-a) The gdpr_github.py  
+     &nbsp; a) The gdpr_github.py  
 b) The github_search_json_to_csv.py 
 c) The keywords_analysis.py
 d) The sentiment_analysis.py
