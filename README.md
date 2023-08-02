@@ -3,7 +3,7 @@ Scripts to collect the GDPR data on Github &amp; Data files and data analysis to
 
 Description of the folder contents with paper sections:
 
-data_collection_scripts (Data Collection &amp Data Processing in the Methodology section)
+data_collection_scripts (Data Collection &amp; Data Processing in the Methodology section)
 1. The gdpr_github.py is used to collect  body, commit message, review, and comment of the GDPR and non GDPR pull requests based on the PR's urls
 2. The github_search_json_to_csv.py is used to collect GDPR and non GDPR related Github pull requests' informations including url, title, mergeed, closed, etc 
 3. The keywords_analysis.py is used to run the keywords extraction and word cloud on the preprocessed data after sentiment analysis
