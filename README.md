@@ -17,5 +17,7 @@ Scripts to collect the GDPR data on Github &amp; Data files and data analysis to
 2. ``new_non_gdpr_data.csv`` contains non-GDPR-related pull request infomation: including url, title, created_at, updated_at, commits, closed, open, etc.
 
 **sentiment_analysis** (*Measuring Developer Perception* in the Data Analysis sub-section (3.1.3) of the Methodology section)
-1. It contains the sentiment analysis results of title, body, comment, review, and commit message for both GDPR and non-GDPR PRs. 
+1. This directory contains the sentiment analysis results of title, body, comment, review, and commit message for both GDPR and non-GDPR PRs. 
 
+**survey** (*Survey Design* (3.2.2) in Methodology section)
+1. This directory contains a copy of the survey (``survey.pdf'') distributed to OSS developers to further discover their perceptions of GDPR implementation.
