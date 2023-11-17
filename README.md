@@ -13,8 +13,10 @@ Scripts to collect the GDPR data on Github &amp; Data files and data analysis to
 1. It contains the keywords extraction &amp; word cloud results of title, body, comment, review, and commit message for both GDPR and non-GDPR PRs.  
 
 **original_data_files** (*Data Collection* (3.1.1) in Methodology section)
-1. The ``new_gdpr_data.csv`` file contains GDPR-related pull request infomation: including url, title, created_at, updated_at, commits, closed, open, etc.
-2. ``new_non_gdpr_data.csv`` contains non-GDPR-related pull request infomation: including url, title, created_at, updated_at, commits, closed, open, etc.
+1. The ``all_gdpr_data.csv`` file contains all GDPR-related pull request infomation: including url, title, created_at, updated_at, commits, closed, open, etc.
+2. The ``non_bot_gdpr_data.csv`` file contains the GDPR-related pull request data for users determined not to be a bot. This was used for our sentiment and keyword analysis.
+3. The ``all_non_gdpr_data.csv`` file contains all non-GDPR-related pull request infomation: including url, title, created_at, updated_at, commits, closed, open, etc.
+4. The ``non_bot_non_gdpr_data.csv`` file contains all non-GDPR related pull request information without data from suspected bots. This was used for our analysis.
 
 **sentiment_analysis** (*Measuring Developer Perception* in the Data Analysis sub-section (3.1.3) of the Methodology section)
 1. This directory contains the sentiment analysis results of title, body, comment, review, and commit message for both GDPR and non-GDPR PRs. 
