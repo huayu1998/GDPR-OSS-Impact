@@ -20,9 +20,9 @@ def getFullNamePullNum(url):
 
 def getData(urls,df,nameOfcsv):
     firstIndex = 0
-    startIndex = 11320
-    endIndex = 12217
-    lastIndex = 12217 # ends of last index of urls list
+    startIndex = 0
+    endIndex = 998
+    lastIndex = 998 # ends of last index of urls list
     count = 0
     prBot = []
     prBody = []
@@ -47,8 +47,10 @@ def getData(urls,df,nameOfcsv):
             repo = gh.get_repo(fullName)
             pr = repo.get_pull(pullNum)
 
+            response = urlopen(pr_url)
+            pr_data = json.loads(response.read())
             # Get bot part
-            aBot = '[bot]' in pr.user.login
+            aBot = 'bot' in pr.user.login or pr_data['user']['type'].lower() == 'bot'
             if aBot:
                 prBot.append(1)
             else:
@@ -101,21 +103,21 @@ def getData(urls,df,nameOfcsv):
     # Ends loop & update the dataframe    
     df['bot'] = prBot # 12228 out of 12227
     df['body'] = prBody
-    df['commit'] = prCommitMessage
+    df['commits'] = prCommitMessage
     df['reviews'] = prReviews # 12226 out of 12227
-    df['comment'] = prComments
+    df['comments'] = prComments
     print("Success ends & Count",count)
     df.to_csv(nameOfcsv, index=False)
 
 # Variables and PyGithub object using Auth Access Token set up
-accessToken = 'Replace your access token here'
+accessToken = '[redacted]'
 auth = Auth.Token(accessToken)
 gh = Github(auth=auth)
-nameOfInputFile = 'update_non_gdpr_data'
-nameOfOutputFile = 'update_nonBot_non_gdpr'
+nameOfInputFile = 'update_new_gdpr_data.csv'
+nameOfOutputFile = 'all_gdpr_data.csv'
 
 # Read new_gdpr_data.csv file and get github API url links
-df = pd.read_csv(nameOfInputFile,encoding='cp1252')
+df = pd.read_csv(nameOfInputFile)
 df = df.dropna(subset=['url'])
 df = df.reset_index(drop=False)
 urls = df["url"]
@@ -133,12 +135,12 @@ print('Rate reset time in Unix timestamp:',gh.rate_limiting_resettime)
 """
 Add all the data parts into one
 """
-df = pd.read_csv('update_non_gdpr_data.csv')
+df = pd.read_csv(nameOfOutputFile)
 bot = df['bot']
 body = df['body']
-commits = df['commit']
+commits = df['commits']
 reviews = df['reviews']
-comments = df['comment']
+comments = df['comments']
 
 body_not_bot = []
 commits_not_bot = []
@@ -163,4 +165,4 @@ df['reviews_not_bot'] = reviews_not_bot
 df['comments_not_bot'] = comments_not_bot
 print(len(body_not_bot),len(commits_not_bot),len(reviews_not_bot),len(comments_not_bot))
 
-df.to_csv('update_nonBot_non_gdpr.csv', index=False)
+df.to_csv('non_bot_gdpr_data.csv', index=False)
