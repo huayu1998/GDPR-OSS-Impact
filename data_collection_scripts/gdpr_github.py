@@ -50,7 +50,7 @@ def getData(urls,df,nameOfcsv):
             response = urlopen(pr_url)
             pr_data = json.loads(response.read())
             # Get bot part
-            aBot = 'bot' in pr.user.login or pr_data['user']['type'].lower() == 'bot'
+            aBot = 'bot' in pr.user.login.lower() or pr_data['user']['type'].lower() == 'bot'
             if aBot:
                 prBot.append(1)
             else:
